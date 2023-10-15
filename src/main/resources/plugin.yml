@@ -1,0 +1,3 @@
+name: newstaff
+version: '${version}'
+main: pt.z4.newstaff.Newstaff
