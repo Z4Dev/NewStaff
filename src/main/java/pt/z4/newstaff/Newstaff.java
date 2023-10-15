@@ -17,7 +17,7 @@ public final class Newstaff extends JavaPlugin {
         staffTable = new StaffTable(databaseManager);
         staffTable.createTables();
 
-        getCommand("nstaff").setExecutor(new nStaff());
+        getCommand("nstaff").setExecutor(new nStaff(staffTable));
 
     }
 
