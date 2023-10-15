@@ -1,3 +1,6 @@
 name: newstaff
 version: '${version}'
 main: pt.z4.newstaff.Newstaff
+commands:
+  nstaff:
+    description: Join/Leave on the staff mode

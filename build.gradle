@@ -1,15 +1,31 @@
 plugins {
     id 'java'
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = 'pt.z4'
 version = '1.0'
 
+tasks {
+    assemble {
+        dependsOn(shadowJar)
+    }
+    shadowJar {
+        minimize()
+        archiveFileName = 'NewStaff-' + version + '.jar'
+        relocate 'com.zaxxer', 'pt.z4.dp.libs'
+    }
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+}
+
 repositories {
     mavenCentral()
     maven {
-        name = "spigotmc-repo"
-        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+        name = 'papermc-repo'
+        url = 'https://repo.papermc.io/repository/maven-public/'
     }
     maven {
         name = "sonatype"
@@ -18,30 +34,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly "org.spigotmc:spigot-api:1.12-R0.1-SNAPSHOT"
+    implementation 'org.github.paperspigot:paperspigot-api:1.8.8-R0.1-SNAPSHOT'
+    implementation 'com.zaxxer:HikariCP:2.7.9'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'org.jetbrains:annotations:24.0.0'
+    implementation 'org.jetbrains:annotations:24.0.0'
 }
 
-def targetJavaVersion = 8
-java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        options.release = targetJavaVersion
-    }
-}
-
-processResources {
-    def props = [version: version]
-    inputs.properties props
-    filteringCharset 'UTF-8'
-    filesMatching('plugin.yml') {
-        expand props
-    }
-}
