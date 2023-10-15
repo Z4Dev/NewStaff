@@ -3,14 +3,18 @@ package pt.z4.newstaff.Database.tables;
 import pt.z4.newstaff.Database.Database;
 import pt.z4.newstaff.Database.DatabaseManager;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class DefaultTable extends Database {
-    String query = "CREATE TABLE IF NOT EXISTS example (name VARCHAR(16), PRIMARY KEY (name))";
+public class StaffTable extends Database {
+    String query = "CREATE TABLE IF NOT EXISTS staff (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(16), staff BOOLEAN, PRIMARY KEY (id))";
 
-    public DefaultTable(DatabaseManager databaseManager) {
+    public StaffTable(DatabaseManager databaseManager) {
         super(databaseManager);
     }
 
@@ -24,4 +28,5 @@ public class DefaultTable extends Database {
             return null;
         });
     }
+
 }

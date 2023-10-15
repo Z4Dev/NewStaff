@@ -2,20 +2,20 @@ package pt.z4.newstaff;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import pt.z4.newstaff.Database.DatabaseManager;
-import pt.z4.newstaff.Database.tables.DefaultTable;
+import pt.z4.newstaff.Database.tables.StaffTable;
 import pt.z4.newstaff.commands.nStaff;
 
 public final class Newstaff extends JavaPlugin {
 
-    private DefaultTable defaultTable;
+    private StaffTable staffTable;
     private DatabaseManager databaseManager;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         databaseManager = new DatabaseManager(this);
-        defaultTable = new DefaultTable(databaseManager);
-        defaultTable.createTables();
+        staffTable = new StaffTable(databaseManager);
+        staffTable.createTables();
 
         getCommand("nstaff").setExecutor(new nStaff());
 
