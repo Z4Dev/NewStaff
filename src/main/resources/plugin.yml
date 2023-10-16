@@ -8,3 +8,6 @@ commands:
   staffchat:
     description: Send a message to the staff chat
     aliases: [sc]
+  tpto:
+    description: Teleport to a player
+    aliases: [tp2]
