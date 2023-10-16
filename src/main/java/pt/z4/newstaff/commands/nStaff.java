@@ -22,6 +22,11 @@ public class nStaff implements CommandExecutor {
         }
         Player player = (Player) sender;
 
+        if(!player.hasPermission("newstaff.staff")) {
+            player.sendMessage(ChatColor.color("&cYou don't have permission to execute this command!"));
+            return false;
+        }
+
         staffTable.isOnStaffMode(player.getDisplayName()).thenAccept(result -> {
             if (result.exists()) {
                 staffTable.updateStaffMode(player.getDisplayName(), !result.isOnStaffMode());

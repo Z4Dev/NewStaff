@@ -15,6 +15,15 @@ public class nStaffChat implements CommandExecutor {
 
         Player player = (Player) sender;
 
+        if(!player.hasPermission("newstaff.staffchat")) {
+            player.sendMessage(ChatColor.color("&cYou don't have permission to execute this command!"));
+            return false;
+        }
+        if(args.length == 0) {
+            player.sendMessage(ChatColor.color("&cUsage: /" + command.getName() +  " <message>"));
+            return false;
+        }
+
         StringBuilder message = new StringBuilder();
         for(String arg : args) {
             message.append(arg).append(" ");

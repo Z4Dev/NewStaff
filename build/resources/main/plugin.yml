@@ -4,3 +4,7 @@ main: pt.z4.newstaff.Newstaff
 commands:
   nstaff:
     description: Join/Leave on the staff mode
+    aliases: [staff]
+  staffchat:
+    description: Send a message to the staff chat
+    aliases: [sc]
