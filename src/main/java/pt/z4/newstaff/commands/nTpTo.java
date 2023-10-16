@@ -8,8 +8,6 @@ import pt.z4.newstaff.Database.tables.StaffTable;
 import pt.z4.newstaff.models.Staff;
 import pt.z4.newstaff.utils.ChatColor;
 
-import java.util.concurrent.CompletableFuture;
-
 public class nTpTo implements CommandExecutor {
 
     private final StaffTable staffTable;
