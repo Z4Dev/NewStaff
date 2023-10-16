@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pt.z4.newstaff.Database.DatabaseManager;
 import pt.z4.newstaff.Database.tables.StaffTable;
 import pt.z4.newstaff.commands.nStaff;
+import pt.z4.newstaff.commands.nStaffChat;
 
 public final class Newstaff extends JavaPlugin {
 
@@ -18,6 +19,7 @@ public final class Newstaff extends JavaPlugin {
         staffTable.createTables();
 
         getCommand("nstaff").setExecutor(new nStaff(staffTable));
+        getCommand("staffchat").setExecutor(new nStaffChat());
 
     }
 
