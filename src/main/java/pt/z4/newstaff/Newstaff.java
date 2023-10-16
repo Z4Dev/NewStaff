@@ -21,7 +21,7 @@ public final class Newstaff extends JavaPlugin {
 
         getCommand("nstaff").setExecutor(new nStaff(staffTable));
         getCommand("staffchat").setExecutor(new nStaffChat());
-        getCommand("tpto").setExecutor(new nTpTo());
+        getCommand("tpto").setExecutor(new nTpTo(staffTable));
 
     }
 
