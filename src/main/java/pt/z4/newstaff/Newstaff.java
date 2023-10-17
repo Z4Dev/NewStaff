@@ -18,21 +18,25 @@ public final class Newstaff extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
-        saveDefaultConfig();
-        databaseManager = new DatabaseManager(this);
-        staffTable = new StaffTable(databaseManager);
-        staffTable.createTables();
-
         PluginManager pluginManager = getServer().getPluginManager();
+        try {
+            saveDefaultConfig();
+            databaseManager = new DatabaseManager(this);
+            staffTable = new StaffTable(databaseManager);
+            staffTable.createTables();
 
-        pluginManager.registerEvents(new PlayerDrop(staffTable), this);
-        pluginManager.registerEvents(new PlayerPickup(staffTable), this);
-        pluginManager.registerEvents(new PlayerInventoryClick(staffTable), this);
+            pluginManager.registerEvents(new PlayerDrop(staffTable), this);
+            pluginManager.registerEvents(new PlayerPickup(staffTable), this);
+            pluginManager.registerEvents(new PlayerInventoryClick(staffTable), this);
 
-        getCommand("nstaff").setExecutor(new nStaff(staffTable));
-        getCommand("staffchat").setExecutor(new nStaffChat());
-        getCommand("tpto").setExecutor(new nTpTo(staffTable));
+            getCommand("nstaff").setExecutor(new nStaff(staffTable));
+            getCommand("staffchat").setExecutor(new nStaffChat());
+            getCommand("tpto").setExecutor(new nTpTo(staffTable));
+        } catch (Exception e) {
+            getLogger().severe("Error activating the plugin: " + e.getMessage());
+            e.printStackTrace();
+            pluginManager.disablePlugin(this);
+        }
 
     }
 

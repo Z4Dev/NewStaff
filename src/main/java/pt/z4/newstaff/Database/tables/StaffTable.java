@@ -38,7 +38,8 @@ public class StaffTable extends Database {
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next()) {
                     String name = resultSet.getString("name");
-                    return new Staff(resultSet.getString("name"), resultSet.getBoolean("staff"),name != null);
+                    boolean staff = resultSet.getBoolean("staff");
+                    return new Staff(name,staff,name != null);
                 }
             } catch (Exception exception) {
                 exception.printStackTrace();
