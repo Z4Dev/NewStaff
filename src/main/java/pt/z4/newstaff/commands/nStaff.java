@@ -29,8 +29,19 @@ public class nStaff implements CommandExecutor {
 
         staffTable.isOnStaffMode(player.getDisplayName()).thenAccept(result -> {
             if (result.exists()) {
+                String message = result.isOnStaffMode() ? "&cOFF" : "&aON";
                 staffTable.updateStaffMode(player.getDisplayName(), !result.isOnStaffMode());
-                player.sendMessage(ChatColor.color("&bStaff Mode:" + (result.isOnStaffMode() ? " &cOFF" : " &aON")));
+                player.sendMessage(ChatColor.color("&bStaff Mode:" + message));
+
+                if(message == "&cOFF") {
+                    player.setAllowFlight(false);
+                    if(player.isFlying()) {
+                        player.setFlying(false);
+                    }
+                } else {
+                    player.setAllowFlight(true);
+                    player.setFlying(true);
+                }
             } else {
                 staffTable.addStaff(player.getDisplayName());
                 player.sendMessage(ChatColor.color("&bStaff Mode: &aON"));
