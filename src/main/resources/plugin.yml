@@ -11,3 +11,5 @@ commands:
   tpto:
     description: Teleport to a player
     aliases: [tp2]
+  fly:
+    description: Enable/Disable fly
