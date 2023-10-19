@@ -11,10 +11,6 @@ public class Staff {
         this.exists = exists;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean isOnStaffMode() {
         return isOnStaffMode;
     }

@@ -54,7 +54,6 @@ public class nTpTo implements CommandExecutor {
         }
 
         player.teleport(target.getLocation());
-
         player.sendMessage(ChatColor.color("&aYou have been teleported to &f" + target.getName() + "&a!"));
 
         return false;
